@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Fabflix</title>
+
+	<!-- Using jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- include jquery autocomplete JS  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.7/jquery.autocomplete.min.js"></script>
+	
+    <!-- Bootstrap core CSS-->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <!-- <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet"> -->
+	
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin.css" rel="stylesheet">
+
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="index.html">Welcome to Fabflix!</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <!-- Form for submitting the full text search -->
+			<input  type="text" name="movies" id="autocomplete"
+				class="autocomplete-searchbox form-control" 
+				placeholder="Search for something here"/>
+			<button id="autocomplete_btn" class="btn" onclick="handleBtn()"><i class="fas fa-search"></i></button>
+	  
+	<div class="g-recaptcha" data-sitekey="6LfDWpAUAAAAALgJdC8DfW4KZVHhqi3viQ8Bw2tw"></div>	
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-0" style="position:absolute; right:0">
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle fa-fw"></i>
+            <span>User Options</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <!--  <a class="dropdown-item" href="#">Settings</a> -->
+            <!--  <a class="dropdown-item" href="#">Activity Log</a> -->
+            <!-- <div class="dropdown-divider"></div> -->
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+          </div>
+        </li>
+      </ul>
+
+    </nav>
+    
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">
+            <i class="fas fa-home"></i>
+            <span>Main</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="genres.html">
+            <i class="fas fa-list"></i>
+            <span>Browse By Genre</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="titles.html">
+            <i class="fas fa-film"></i>
+            <span>Browse By Title</span></a>
+        </li>
+        <li class="nav-item">
+        	<a class="nav-link" href="checkout.html">
+        		<i class="fas fa-shopping-cart"></i>
+        	<span>Shopping Cart</span></a>
+        </li>
+      </ul>
+      
+      <div class="card mb-3">
+      
+        <!-- Main page's search input fields -->
+        <div class="card mb-3">
+	        <div class="card-header">
+	            <i class="fas fa-search"></i> Search the Fabflix Library
+            </div>
+            <!-- Search text input -->
+            <div class="form-group">
+              <div class="form-row">
+                <div class="col-md-10" style="padding-left:11em" align="center">
+                  <!-- Form for grabbing the movie search parameters; they're encapsulated into a table for formatting purposes but per
+                  		documentation, HTML5 should allow retrieving these forms in bulk or individually. -->
+                  <div id="search_form" style="padding:1em">
+                  		<label for="movieTitle">Movie Title</label>
+	                    <input type="text" id="search_title" form="search_form" class="form-control" style="text-align:center" placeholder="Enter title here" autofocus="autofocus">
+	                    <br>
+	                    <label for="movieYear">Year Released</label>
+	                   	<input type="text" id="search_year" form="search_form" class="form-control" style="text-align:center" placeholder="Enter year here">
+	                   	<br>
+	                    <label for="movieDirector">Director</label>
+	                   	<input type="text" id="search_director" form="search_form" class="form-control" style="text-align:center" placeholder="Enter director's name here">
+	                   	<br>
+						<label for="movieDirector">Star Name</label>
+	                   	<input type="text" id="search_star" form="search_form" class="form-control" style="text-align:center" placeholder="Enter star's name here">
+	                    <br>
+	                    <input type="submit" class="btn" onclick="submitSearchForm()" value="Search">
+	              </div>
+
+                </div>
+              </div>
+            </div>
+            <!-- /. Search text input -->
+        </div>
+        <!-- /. Main page's search input fields --> 
+        
+
+        <div class="card-header">
+          <i class="far fa-star"></i> Top 20 Highest Rated Movies on Fabflix</div>
+
+	        <div class="card-body">
+	            <div class="table-responsive">
+	              <table class="table table-striped" id="top_20_table" width="100%" cellspacing="0">
+	                <thead>
+	                	<tr>
+	                		<th>Title</th>
+					        <th>Year</th>
+					        <th>Director</th>
+					        <th>Genres</th>
+					        <th>Stars</th>
+					        <th>Rating</th>
+					        <th>Action</th>
+				        </tr>
+			        </thead>
+			        <tbody id="top_20_table_body"></tbody>
+			        <!--  Don't use table body, use ajax API instead to load the Data Table with JSON data
+			        		<tbody id=top_20_table_body></tbody> -->
+		          </table>
+	       	    </div>
+       	    </div>
+      </div> <!-- /. Main Page's top 20 table -->
+
+      <!-- /.content-wrapper -->
+      
+      <!-- <div class="card card-register mx-auto mt-5">
+        <div class="card-header">Register an Account</div>
+        <div class="card-body">
+          
+            </div>
+            <a class="btn btn-primary btn-block" href="login.html">Register</a>
+          </form>
+          <div class="text-center">
+            <a class="d-block small mt-3" href="login.html">Login Page</a>
+            <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
+          </div>
+        </div>
+      </div> -->
+      
+    </div>
+    
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Click on "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" type="submit" id="logout_button" onclick="submitLogout()" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+	<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+    <!-- Page level plugin JavaScript-->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    
+    <script src="index.js"></script>
+
+  </body>
+
+</html>

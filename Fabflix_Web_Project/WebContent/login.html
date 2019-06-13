@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans:700,600' rel='stylesheet' type='text/css'>
+		<link rel="shortcut icon" href="">
+		<title>Fabflix</title>
+	</head>
+	<style>
+	body {
+		background-image: url("https://media.giphy.com/media/3o6Ztl7RvfwCp9mqhW/giphy.gif");
+	    background-size:100%;
+	    height:100%;
+	    background-repeat: repeat-y;
+	    
+	    font-family: 'Open Sans', sans-serif;
+		margin: 0 auto 0 auto;  
+		width:100%; 
+		text-align:center;
+		margin: 20px 0px 20px 0px;   
+
+	}
+	p	{
+	    font-size:12px;
+	    text-decoration: none;
+	    color:#ffffff;
+	}
+
+	h1	{
+	    font-size:1.5em;
+	    color:#525252;
+	}
+
+	.box {
+	    width:300px;
+	    border-radius:6px;
+	    margin: 0 auto 0 auto;
+	    padding:0px 0px 70px 0px;
+	}
+
+	.email	{
+	    background:#ecf0f1;
+	    border: #ccc 1px solid;
+	    border-bottom: #ccc 2px solid;
+	    padding: 8px;
+	    width:250px;
+	    color:#AAAAAA;
+	    margin-top:10px;
+	    font-size:1em;
+	    border-radius:4px;
+	}
+
+	.password	{
+	    border-radius:4px;
+	    background:#ecf0f1;
+	    border: #ccc 1px solid;
+	    padding: 8px;
+	    width:250px;
+	    font-size:1em;
+	}
+
+	.btn	{
+	    background:#2ecc71;
+	    width:125px;
+	    padding-top:5px;
+	    padding-bottom:5px;
+	    color:white;
+	    border-radius:4px;
+	    border: #27ae60 1px solid;
+	    text-align: center;
+	  
+	    margin-top:20px;
+	    margin-bottom:20px;
+	    float:left;
+	    margin-left:16px;
+	    font-weight:800;
+	    font-size:0.8em;
+	}
+
+	.btn:hover	{
+	    background:#2CC06B; 
+	}
+
+	#btn2	{
+	    float:left;
+	    background:#3498db;
+	    width:125px;  padding-top:5px;
+	    padding-bottom:5px;
+	    color:white;
+	    border-radius:4px;
+	    border: #2980b9 1px solid;
+	  
+	    margin-top:20px;
+	    margin-bottom:20px;
+	    margin-left:10px;
+	    font-weight:800;
+	    font-size:0.8em;
+	}
+	
+	#btn2:hover	{ 
+		background:#3594D2; 
+	}
+	</style>
+	
+	<body>
+		<!-- Setting the method for the form to POST will prevent the username/pw from showing up in the URL. -->
+		<div class="box" align="center">
+			<h2 style="padding-top: 5em; color:white; font-size:50px">F A B F L I X</h2>
+			<form id="login_form" method="post" action="#">
+				<input type="text" name="username" placeholder="Enter e-mail address" class="email" required/>
+				<input type="password" name="password" placeholder="Enter password" class="email" required/>
+
+				<div style="padding-left:70px">
+					<input type="submit" class="btn" value="Login">		  <!-- Login button for submitting form data -->
+				</div>
+				<!-- <a href="index.html"><div id="btn2">Sign Up</div></a>  --> <!-- Needs to route to a registration page, if needed -->
+				
+				<div class="g-recaptcha" data-sitekey="6LfDWpAUAAAAALgJdC8DfW4KZVHhqi3viQ8Bw2tw"></div>		
+			</form>	
+		</div>
+		<p>Forgot your password? <a href="#"><u style="color:#f1c40f;">Click Here!</u></a></p>
+		<br>
+		<div style="font-family:helvetica; font-weight: bold; color:white" align="center" id="login_error_message"></div>
+		
+		<!-- include jQuery and source javascript file to run the page logic -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src='https://www.google.com/recaptcha/api.js'></script>
+		<script src="login.js"></script>
+	</body>
+</html>
+
+
+<!-- REFERENCES -->
+<!-- https://codepen.io/g13nn/pen/LhCIg  Source for login form by Glenn Smith-->
+<!-- https://media.giphy.com/media/3o6Ztl7RvfwCp9mqhW/giphy.gif gif by James Curran -->
+  
+

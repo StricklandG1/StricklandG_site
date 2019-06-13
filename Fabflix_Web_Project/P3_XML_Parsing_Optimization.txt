@@ -1,0 +1,28 @@
+Strickland, Gene
+Lee, Jason
+Team 29 - CS122B 2019 Winter
+
+Notes on Optimization
+
+We used the following data structures and approaches to better optimize the run time of our XML Parser program:
+
+1. HashMaps
+	* We used HashMaps to store data queried from the moviedb database
+	* In doing so, while our insertion time for all data from the tables we need (i.e. movies, stars, genres, stars_in_movies, genres_in_movies)
+		may take linear time to populate, the look-up time to check to see if the data parsed from the XML files already exist
+		in the database takes constant amount
+	* We also used HashMaps to store the valid data parsed from the XML files; this also aided in our optimization since we can use multiple
+		HashMaps for iterating through to check if the HashMap storing valid XML files exist in the HashMap storing existing database entries
+
+2. Utilizing the heap memory
+	* We opted to insert all the data queried from the database to be checked against the contents of the XML files into the heap
+	* In doing so, we opt for the trade-off where we load up the heap memory with data but drastically cut down on the overhead time
+		that would otherwise be spent on making expensive database query calls
+	* This also allowed us to store the HashMaps into the heap to further facilitate the benefits we gained from shorter overall runtimes
+	
+3. ArrayLists and Pairs
+	* We used ArrayLists storing Pairs of different types of data for each XML entry
+	* The ArrayLists allowed us to store multiple relevant data regarding what we needed within the HashMap that correlates to the
+		entry we made the HashMap for
+	* For example, "movieTitle" -> ("directorName", "movieYear")
+	* This allowed us to keep all the relevant data correctly associated and together

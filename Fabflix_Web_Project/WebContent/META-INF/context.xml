@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context>
+
+    <!-- Defines a Data Source Connecting to localhost moviedb-->
+    <Resource name="jdbc/moviedb"
+              auth="Container"
+              driverClassName="com.mysql.jdbc.Driver"
+              type="javax.sql.DataSource"
+              username="mytestuser"
+              password="mypassword"
+              url="jdbc:mysql://localhost:3306/moviedb?characterEncoding=utf8"/>
+
+	<Resource name="jdbc/PooledDB" auth="Container" type="javax.sql.DataSource"
+		  maxTotal="100" maxIdle="30" maxWaitMillis="10000" username="mytestuser"
+		  password="mypassword" driverClassName="com.mysql.jdbc.Driver"
+		  url="jdbc:mysql:replication://172.31.39.175:3306,172.31.36.194:3306/moviedb?autoReconnect=true&amp;useSSL=false&amp;cachePrepStmts=true"/>
+		  
+
+	<Resource name="jdbc/MasterWrite" auth="Container" type="javax.sql.DataSource"
+		maxTotal="100" maxIdle="30" maxWaitMillis="10000" username="mytestuser"
+		password="mypassword" driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://172.31.39.175:3306/moviedb?autoReconnect=true&amp;useSSL=false&amp;cachePrepStmts=true"/>
+
+</Context> 
